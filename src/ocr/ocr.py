@@ -41,7 +41,7 @@ def extract_vote(data):
     text = pytesseract.image_to_string(data)
 
     # look for nickname and vote target
-    regex = re.compile("(.+)\n[\s\S]+(rosan|simon)")
+    regex = re.compile(r"(.+)\n.+voted (rosan|simon)")
     match = regex.match(text)
 
     return match.groups() if match else None
