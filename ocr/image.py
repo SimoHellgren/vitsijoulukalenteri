@@ -1,8 +1,10 @@
+import re
 import numpy as np
 import cv2
+import pytesseract
 
 
-def responses(filepath):
+def split_screenshot(filepath):
     """Splits Instagram screenshot of the list of responses into individual responses"""
     img = cv2.imread(filepath)
 
