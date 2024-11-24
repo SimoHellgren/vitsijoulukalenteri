@@ -1,11 +1,9 @@
-import logging
 import numpy as np
 import cv2
 
 
 def responses(filepath):
     """Splits Instagram screenshot of the list of responses into individual responses"""
-    logging.info(f"Reading image {filepath}")
     img = cv2.imread(filepath)
 
     # crop image
@@ -28,8 +26,6 @@ def responses(filepath):
     # find contours
     contours = cv2.findContours(dilate, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     contours = contours[0] if len(contours) == 2 else contours[1]
-
-    logging.info(f"Found {len(contours)} responses")
 
     for c in contours:
         x, y, w, h = cv2.boundingRect(c)
