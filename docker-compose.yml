@@ -1,0 +1,6 @@
+services:
+  ocr:
+    image: vjk
+    build: .
+    volumes:
+      - "./images:/images"
