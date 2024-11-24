@@ -4,10 +4,10 @@ RUN apt-get update
 RUN apt-get -y install \
     tesseract-ocr
 
-COPY requirements.txt ./requirements.txt
-RUN pip install -r requirements.txt
+COPY src/requirements.txt src/requirements.txt
+RUN pip install -r src/requirements.txt
 
 COPY . .
 
-ENTRYPOINT [ "python" ]
-CMD [ "test.py" ]
+ENTRYPOINT [ "python", "src/script.py" ]
+CMD [ "test.jpg" ]
