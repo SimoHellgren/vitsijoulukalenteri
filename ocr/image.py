@@ -34,3 +34,14 @@ def split_screenshot(filepath):
         part = crop[y : y + h, x : x + w]
 
         yield part
+
+
+def extract_vote(data):
+    # OCR
+    text = pytesseract.image_to_string(data)
+
+    # look for nickname and vote target
+    regex = re.compile("(.+)\n[\s\S]+(rosan|simon)")
+    match = regex.match(text)
+
+    return match.groups() if match else None
