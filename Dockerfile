@@ -10,4 +10,3 @@ RUN pip install -r src/requirements.txt
 COPY . .
 
 ENTRYPOINT [ "python", "src/script.py" ]
-CMD [ "test.jpg" ]

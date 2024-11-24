@@ -4,3 +4,4 @@ services:
     build: .
     volumes:
       - "./images:/images"
+      - "./output:/output"
