@@ -1,7 +1,9 @@
 import sys
 from pathlib import Path
 import json
-from ocr.ocr import split_screenshot, extract_vote
+import pytesseract
+from ocr import split_screenshot
+
 
 GLOB_PATTERN = sys.argv[1]
 
@@ -10,9 +12,9 @@ result = {}
 for file in Path("/images").glob(GLOB_PATTERN):
     parts = split_screenshot(file)
 
-    votes = map(extract_vote, parts)
+    voters = [pytesseract.image_to_string(part).strip("\n") for part in parts]
 
-    result[str(file)] = {name: vote for name, vote in votes}
+    result[str(file)] = voters
 
 
 with open("/output/output.json", "w") as f:
